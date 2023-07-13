@@ -7,7 +7,7 @@ export const seed = async (payload: Payload): Promise<void> => {
     collection: 'users',
     data: {
       email: 'admin@innovixx.co.uk',
-      password: 'pa$$w0rd!',
+      password: 'Pa$$w0rd!',
     },
   })
 

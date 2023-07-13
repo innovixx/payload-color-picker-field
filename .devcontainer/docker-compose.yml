@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  app:
+  demo:
     build: 
       context: .
       dockerfile: Dockerfile
@@ -19,7 +19,7 @@ services:
 
     # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
     # (Adding the "ports" property to this file will not forward from a Codespace.)
-    working_dir: /workspaces/demo
+    working_dir: /workspaces/payload-color-picker-field/demo
 
   db:
     image: mongo:latest

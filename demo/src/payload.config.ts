@@ -1,7 +1,7 @@
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
-import plugin from '../../src'
+import colorPickerField from '../../src'
 import Media from './collections/Media'
 import Pages from './collections/Pages'
 import Posts from './collections/Posts'
@@ -35,7 +35,7 @@ export default buildConfig({
     defaultLocale: 'en',
     fallback: true,
   },
-  plugins: [plugin({})],
+  plugins: [colorPickerField({})],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
