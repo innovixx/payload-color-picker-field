@@ -1,7 +1,6 @@
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
-import colorPickerField from '../../src'
 import Media from './collections/Media'
 import Pages from './collections/Pages'
 import Posts from './collections/Posts'
@@ -22,6 +21,7 @@ export default buildConfig({
             react: path.join(__dirname, '../node_modules/react'),
             'react-dom': path.join(__dirname, '../node_modules/react-dom'),
             payload: path.join(__dirname, '../node_modules/payload'),
+            'react-i18next': path.join(__dirname, '../node_modules/react-i18next'),
           },
         },
       }
@@ -35,7 +35,6 @@ export default buildConfig({
     defaultLocale: 'en',
     fallback: true,
   },
-  plugins: [colorPickerField({})],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },

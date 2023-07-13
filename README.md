@@ -1,19 +1,20 @@
 # Payload Color Picker Field
 
-[![NPM](https://img.shields.io/npm/v/{{@innovixx/payload-color-picker-field}})](https://www.npmjs.com/package/{{@innovixx/payload-color-picker-field}})
+[![NPM](https://img.shields.io/npm/v/@innovixx/payload-color-picker-field)](https://www.npmjs.com/package/@innovixx/payload-color-picker-field)
 
 A plugin for [Payload](https://github.com/payloadcms/payload) {{DESCRIPTION}}.
 
 Core features:
 
-  - {{core features list}}
+  - Add a color picker field to your Payload collections
+  - Supports HEX and RGB color formats
 
 ## Installation
 
 ```bash
-  yarn add {{@innovixx/payload-color-picker-field}}
+  yarn add @innovixx/payload-color-picker-field
   # OR
-  npm i {{@innovixx/payload-color-picker-field}}
+  npm i @innovixx/payload-color-picker-field
 ```
 
 ## Basic Usage
@@ -21,49 +22,29 @@ Core features:
 In the `plugins` array of your [Payload config](https://payloadcms.com/docs/configuration/overview), call the plugin with [options](#options):
 
 ```js
-import { buildConfig } from 'payload/config';
-import plugin from '{{@innovixx/payload-color-picker-field}}';
+import type { CollectionConfig } from 'payload/types'
 
-const config = buildConfig({
-  collections: [
-    {
-      slug: 'pages',
-      fields: []
-    },
-    {
-      slug: 'media',
-      upload: {
-        staticDir: // path to your static directory,
+import { colorPickerField } from '@innovixx/payload-color-picker-field'
+
+const Pages: CollectionConfig = {
+  slug: 'pages',
+  admin: {
+    useAsTitle: 'title',
+  },
+  fields: [
+    colorPickerField({
+      name: 'primaryColor',
+      label: 'Primary Color',
+      required: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Choose a color for this page',
       },
-      fields: []
-    }
+    }),
   ],
-  plugins: [
-    {{plugin()}}
-  ]
-});
+}
 
-export default config;
-```
-
-### Options
-
-- `overwrites` : [key: string]: any | optional
-
-  An object of overwrites to apply to the plugin. This is useful for when you want to customize the plugin's behaviour without having to fork it. The object keys are the names of the properties you want to overwrite, and the values are the functions you want to use instead.
-
-  ```js
-
-  ```
-
-## TypeScript
-
-All types can be directly imported:
-
-```js
-import {
-  PluginConfig,
-} from '{{@innovixx/payload-color-picker-field}}/types';
+export default Pages
 ```
 
 ## Development
@@ -80,43 +61,3 @@ To actively develop or debug this plugin you can either work directly within the
    1. Enter username `admin@innovixx.co.uk` and password `pa$$w0rd!`
 
    That's it! Changes made in `./src` will be reflected in your demo. Keep in mind that the demo database is automatically seeded on every startup, any changes you make to the data get destroyed each time you reboot the app.
-
-1. #### Linked Project
-
-   You can alternatively link your own project to the source code:
-
-   1. First clone the repo
-   1. Then, `cd YOUR_PLUGIN_REPO && yarn && cd demo && cp env.example .env && yarn && yarn dev`
-   1. Now `cd` back into your own project and run, `yarn link {{@innovixx/payload-color-picker-field}}`
-   1. If this plugin using React in any way, continue to the next step. Otherwise skip to step 7.
-   1. From your own project, `cd node_modules/react && yarn link && cd ../react-dom && yarn link && cd ../../`
-   1. Then, `cd YOUR_PLUGIN_REPO && yarn link react react-dom`
-
-   All set! You can now boot up your own project as normal, and your local copy of the plugin source code will be used. Keep in mind that changes to the source code require a rebuild, `yarn build`.
-
-   You might also need to alias these modules in your Webpack config. To do this, open your project's Payload config and add the following:
-
-   ```js
-   import { buildConfig } from "payload/config";
-
-   export default buildConfig({
-     admin: {
-       webpack: (config) => ({
-         ...config,
-         resolve: {
-           ...config.resolve,
-           alias: {
-             ...config.resolve.alias,
-             react: path.join(__dirname, "../node_modules/react"),
-             "react-dom": path.join(__dirname, "../node_modules/react-dom"),
-             payload: path.join(__dirname, "../node_modules/payload"),
-             "{{@innovixx/payload-color-picker-field}}": path.join(
-               __dirname,
-               "../../payload/payload-color-picker-field/src"
-             ),
-           },
-         },
-       }),
-     },
-   });
-   ```
