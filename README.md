@@ -2,7 +2,7 @@
 
 [![NPM](https://img.shields.io/npm/v/@innovixx/payload-color-picker-field)](https://www.npmjs.com/package/@innovixx/payload-color-picker-field)
 
-A plugin for [Payload](https://github.com/payloadcms/payload) {{DESCRIPTION}}.
+A field for [Payload](https://github.com/payloadcms/payload) The Payload Color Picker that enables an easy color selection field for your Payload projects..
 
 Core features:
 
@@ -18,8 +18,6 @@ Core features:
 ```
 
 ## Basic Usage
-
-In the `plugins` array of your [Payload config](https://payloadcms.com/docs/configuration/overview), call the plugin with [options](#options):
 
 ```js
 import type { CollectionConfig } from 'payload/types'
