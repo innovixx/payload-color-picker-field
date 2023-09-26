@@ -18,6 +18,7 @@ export const seed = async (payload: Payload): Promise<void> => {
       slug: 'home',
       excerpt: 'This is the home page',
       primaryColor: '#000000',
+      secondaryColor: '#FFFFFF',
     },
   })
 
