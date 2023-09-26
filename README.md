@@ -56,6 +56,6 @@ To actively develop or debug this plugin you can either work directly within the
    1. First clone the repo
    1. Then, `cd YOUR_PLUGIN_REPO && yarn && cd demo && yarn && yarn cleanDev`
    1. Now open `http://localhost:3000/admin` in your browser
-   1. Enter username `admin@innovixx.co.uk` and password `pa$$w0rd!`
+   1. Enter username `admin@innovixx.co.uk` and password `Pa$$w0rd!`
 
    That's it! Changes made in `./src` will be reflected in your demo. Keep in mind that the demo database is automatically seeded on every startup, any changes you make to the data get destroyed each time you reboot the app.
