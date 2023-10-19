@@ -12,6 +12,7 @@
     "lint": "eslint src",
     "lint:fix": "eslint --fix --ext .ts,.tsx src",
     "copy:scss": "copyfiles -u 1 \"src/**/*.scss\" dist",
+    "watch": "nodemon --watch src -e ts,tsx,scss --exec \"yarn build\"",
     "prepare": "npm run build"
   },
   "keywords": [

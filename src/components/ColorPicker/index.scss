@@ -1,0 +1,61 @@
+@import '~payload/scss';
+
+.field-type.color {
+  position: relative;
+
+  input {
+    @include formInput;
+  }
+}
+
+.color {
+  &__input-container {
+    position: relative;
+    z-index: var($z-page-content);
+
+    display: flex;
+  }
+  &__color-preview {
+    height: base(2);
+    width: base(2);
+    border: 1px solid var(--theme-elevation-150);
+  }
+  &__color-picker-modal {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    margin-top: base(0.5);
+    z-index: var($z-modal);
+  }
+
+  & .react-colorful__saturation, .react-colorful__hue {
+    border-radius: 0;
+  }
+
+  & .react-colorful__pointer {
+    border-radius: 0;
+    width: base(0.95);
+    height: base(0.95);
+  }
+}
+
+html[data-theme='light'] {
+  .field-type.color {
+    &.error {
+      input {
+        background-color: var(--theme-error-200);
+      }
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .field-type.color {
+    &.error {
+      input {
+        background-color: var(--theme-error-200);
+      }
+    }
+  }
+}
