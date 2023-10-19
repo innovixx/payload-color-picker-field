@@ -37,6 +37,10 @@
       height: base(0.95);
     }  
   }
+  &__color-picker-modal--rtl {
+    left: auto;
+    right: 0;
+  }
 }
 
 html[data-theme='light'] {

@@ -89,12 +89,14 @@ const ColorInput: React.FC<ColorInputProps> = props => {
         onFocus={() => setFieldIsFocused(true)}
         onBlur={() => setFieldIsFocused(false)}
       >
-        <div
-          className={`${baseClass}__color-preview`}
-          style={{
-            background: value?.length && value?.length > 1 ? value : '#fff',
-          }}
-        ></div>
+        {!rtl && (
+          <div
+            className={`${baseClass}__color-preview`}
+            style={{
+              background: value?.length && value?.length > 1 ? value : '#fff',
+            }}
+          />
+        )}
         <input
           data-rtl={rtl}
           disabled={readOnly}
@@ -107,8 +109,20 @@ const ColorInput: React.FC<ColorInputProps> = props => {
           type="text"
           value={value || ''}
         />
+        {rtl && (
+          <div
+            className={`${baseClass}__color-preview`}
+            style={{
+              background: value?.length && value?.length > 1 ? value : '#fff',
+            }}
+          />
+        )}
         {fieldIsFocused && (
-          <div className={`${baseClass}__color-picker-modal`}>
+          <div
+            className={`${baseClass}__color-picker-modal ${
+              rtl ? `${baseClass}__color-picker-modal--rtl` : ''
+            }`}
+          >
             <HexColorPicker
               color={value}
               onChange={v => {
