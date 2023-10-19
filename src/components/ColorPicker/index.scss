@@ -28,23 +28,13 @@
     margin-top: base(0.5);
     z-index: var($z-modal);
   }
-
-  & .react-colorful__saturation, .react-colorful__hue {
-    border-radius: 0;
-  }
-
-  & .react-colorful__pointer {
-    border-radius: 0;
-    width: base(0.95);
-    height: base(0.95);
-  }
 }
 
 html[data-theme='light'] {
   .field-type.color {
     &.error {
       input {
-        background-color: var(--theme-error-200);
+        @include lightInputError;
       }
     }
   }
@@ -54,7 +44,7 @@ html[data-theme='dark'] {
   .field-type.color {
     &.error {
       input {
-        background-color: var(--theme-error-200);
+        @include darkInputError;
       }
     }
   }

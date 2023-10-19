@@ -1,3 +1,6 @@
+import { webpackBundler } from '@payloadcms/bundler-webpack'
+import { mongooseAdapter } from '@payloadcms/db-mongodb'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
 import { buildConfig } from 'payload/config'
 
@@ -9,8 +12,16 @@ import HomePage from './globals/Settings'
 
 export default buildConfig({
   serverURL: 'http://localhost:3000',
+
+  db: mongooseAdapter({
+    url: process.env.MONGODB_URI,
+  }),
+
+  editor: lexicalEditor({}),
+
   admin: {
     user: Users.slug,
+    bundler: webpackBundler(),
     webpack: config => {
       const newConfig = {
         ...config,
@@ -21,7 +32,6 @@ export default buildConfig({
             react: path.join(__dirname, '../node_modules/react'),
             'react-dom': path.join(__dirname, '../node_modules/react-dom'),
             payload: path.join(__dirname, '../node_modules/payload'),
-            'react-i18next': path.join(__dirname, '../node_modules/react-i18next'),
           },
         },
       }

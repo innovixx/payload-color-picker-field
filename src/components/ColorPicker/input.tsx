@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
 import { useTranslation } from 'react-i18next'
 import Error from 'payload/dist/admin/components/forms/Error'
+import { fieldBaseClass } from 'payload/dist/admin/components/forms/field-types/shared'
 import FieldDescription from 'payload/dist/admin/components/forms/FieldDescription'
 import { Description } from 'payload/dist/admin/components/forms/FieldDescription/types'
 import Label from 'payload/dist/admin/components/forms/Label'
@@ -30,8 +31,6 @@ export type ColorInputProps = Omit<TextField, 'type'> & {
   value?: string
   width?: string
 }
-
-const fieldBaseClass = 'field-type'
 
 const ColorInput: React.FC<ColorInputProps> = props => {
   const {

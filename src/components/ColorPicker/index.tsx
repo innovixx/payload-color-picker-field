@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { isFieldRTL } from 'payload/dist/admin/components/forms/field-types/shared'
 import useField from 'payload/dist/admin/components/forms/useField'
 import withCondition from 'payload/dist/admin/components/forms/withCondition'
 import { useConfig } from 'payload/dist/admin/components/utilities/Config'
@@ -11,7 +12,7 @@ import type { Props } from './types'
 const Color: React.FC<Props> = props => {
   const {
     name,
-    admin: { className, condition, description, placeholder, readOnly, style, width } = {},
+    admin: { className, condition, description, placeholder, readOnly, rtl, style, width } = {},
     inputRef,
     label,
     localized,
@@ -26,6 +27,12 @@ const Color: React.FC<Props> = props => {
   const locale = useLocale()
 
   const { localization } = useConfig()
+  const isRTL = isFieldRTL({
+    fieldLocalized: localized as boolean,
+    fieldRTL: rtl as boolean,
+    locale,
+    localizationConfig: localization || undefined,
+  })
 
   const memoizedValidate = useCallback(
     (value: unknown, options: any) => {
@@ -55,6 +62,7 @@ const Color: React.FC<Props> = props => {
       placeholder={placeholder}
       readOnly={readOnly}
       required={required}
+      rtl={isRTL}
       showError={showError}
       style={style}
       value={value}
