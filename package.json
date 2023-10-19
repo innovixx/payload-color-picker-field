@@ -1,6 +1,6 @@
 {
   "name": "@innovixx/payload-color-picker-field",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "homepage:": "https://innovixx.co.uk",
   "repository": "git@github.com:Innovixx-Development/payload-color-picker-field.git",
   "description": "The Payload Color Picker that enables an easy color selection field for your Payload projects.",
