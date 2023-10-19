@@ -39,11 +39,6 @@ const Pages: CollectionConfig = {
         description: 'Pick a color for this page',
       },
     }),
-    colorPickerField({
-      admin: {
-        description: 'Pick a color for this page',
-      },
-    }),
   ],
 }
 
