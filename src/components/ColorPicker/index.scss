@@ -26,6 +26,16 @@
 
     margin-top: base(0.5);
     z-index: $z-modal;
+
+    & .react-colorful__saturation, .react-colorful__hue {
+      border-radius: 0;
+    }
+  
+    & .react-colorful__pointer {
+      border-radius: 0;
+      width: base(0.95);
+      height: base(0.95);
+    }  
   }
 }
 
