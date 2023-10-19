@@ -7,7 +7,7 @@ A field for [Payload](https://github.com/payloadcms/payload) The Payload Color P
 Core features:
 
   - Add a color picker field to your Payload collections
-  - Supports HEX and RGB color formats
+  - Supports HEX color formats
 
 ## Installation
 

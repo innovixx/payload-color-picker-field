@@ -14,10 +14,7 @@ const Pages: CollectionConfig = {
       type: 'text',
       required: true,
     },
-    {
-      name: 'excerpt',
-      type: 'text',
-    },
+
     {
       name: 'slug',
       type: 'text',
@@ -30,15 +27,31 @@ const Pages: CollectionConfig = {
         position: 'sidebar',
       },
     },
+    colorPickerField({
+      name: 'primaryColor',
+      label: 'Primary Color',
+      admin: {
+        description: 'Pick a color for this page',
+      },
+    }) as any,
+    {
+      name: 'excerpt',
+      type: 'text',
+    },
     {
       name: 'date',
       type: 'date',
     },
     colorPickerField({
+      name: 'secondaryColor',
+      label: 'Secondary Color',
+
       admin: {
-        description: 'Pick a color for this page',
+        position: 'sidebar',
+        description: 'Pick a secondary color for this page',
+        rtl: true,
       },
-    }),
+    }) as any,
   ],
 }
 
