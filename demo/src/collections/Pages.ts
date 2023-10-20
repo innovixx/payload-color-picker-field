@@ -1,9 +1,7 @@
-import type { CollectionConfig } from 'payload/types'
-
 // eslint-disable-next-line import/no-relative-packages
 import { colorPickerField } from '../../../dist'
 
-const Pages: CollectionConfig = {
+const Pages = {
   slug: 'pages',
   admin: {
     useAsTitle: 'title',
@@ -33,7 +31,7 @@ const Pages: CollectionConfig = {
       admin: {
         description: 'Pick a color for this page',
       },
-    }) as any,
+    }),
     {
       name: 'excerpt',
       type: 'text',
@@ -51,7 +49,7 @@ const Pages: CollectionConfig = {
         description: 'Pick a secondary color for this page',
         rtl: true,
       },
-    }) as any,
+    }),
   ],
 }
 
