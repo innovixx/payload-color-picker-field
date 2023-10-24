@@ -2,9 +2,11 @@
 
 [![NPM](https://img.shields.io/npm/v/@innovixx/payload-color-picker-field)](https://www.npmjs.com/package/@innovixx/payload-color-picker-field)
 
-A field for [Payload](https://github.com/payloadcms/payload) The Payload Color Picker that enables an easy color selection field for your Payload projects..
+A field for [Payload](https://github.com/payloadcms/payload) that enables an easy color selection field for your Payload projects.
 
-Core features:
+![payload-color-picker-field-screenshot.png](https://github.com/Innovixx-Development/payload-color-picker-field/blob/master/screenshots/payload-color-picker-field-screenshot.png?raw=true)
+
+## Core features:
 
   - Add a color picker field to your Payload collections
   - Supports HEX color formats
