@@ -2,6 +2,7 @@ import type { ChangeEvent } from 'react'
 import React, { useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
 import { useTranslation } from 'react-i18next'
+import Button from 'payload/dist/admin/components/elements/Button'
 import Error from 'payload/dist/admin/components/forms/Error'
 import { fieldBaseClass } from 'payload/dist/admin/components/forms/field-types/shared'
 import FieldDescription from 'payload/dist/admin/components/forms/FieldDescription'
@@ -30,6 +31,7 @@ export type ColorInputProps = Omit<TextField, 'type'> & {
   style?: React.CSSProperties
   value?: string
   width?: string
+  colors?: string[]
 }
 
 const ColorInput: React.FC<ColorInputProps> = props => {
@@ -50,6 +52,7 @@ const ColorInput: React.FC<ColorInputProps> = props => {
     style,
     value,
     width,
+    colors,
   } = props
 
   const [fieldIsFocused, setFieldIsFocused] = useState(false)
@@ -87,7 +90,11 @@ const ColorInput: React.FC<ColorInputProps> = props => {
       <div
         className={`${baseClass}__input-container`}
         onFocus={() => setFieldIsFocused(true)}
-        onBlur={() => setFieldIsFocused(false)}
+        onBlur={e => {
+          if (!e.currentTarget.contains(e.relatedTarget)) {
+            setFieldIsFocused(false)
+          }
+        }}
       >
         {!rtl && (
           <div
@@ -123,6 +130,32 @@ const ColorInput: React.FC<ColorInputProps> = props => {
               rtl ? `${baseClass}__color-picker-modal--rtl` : ''
             }`}
           >
+            {colors && (
+              <div className={`${baseClass}__color-picker-modal__predefined-colors`}>
+                {colors.map((color, index) => (
+                  <Button
+                    buttonStyle="none"
+                    key={index}
+                    className={`${baseClass}__color-picker-modal__button`}
+                    onClick={() => {
+                      onChange?.({
+                        target: {
+                          name: path,
+                          value: color,
+                        },
+                      } as ChangeEvent<HTMLInputElement>)
+                    }}
+                  >
+                    <span
+                      className={`${baseClass}__color-picker-modal__button__color`}
+                      style={{
+                        background: color,
+                      }}
+                    />
+                  </Button>
+                ))}
+              </div>
+            )}
             <HexColorPicker
               color={value}
               onChange={v => {

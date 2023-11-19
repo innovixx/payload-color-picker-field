@@ -31,6 +31,7 @@ const Pages = {
       admin: {
         description: 'Pick a color for this page',
       },
+      colors: ['#ff0000', '#00ff00', '#0000ff', '#000000', '#ffffff', '#ff00ff'],
     }),
     {
       name: 'excerpt',
