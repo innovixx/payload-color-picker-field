@@ -24,8 +24,31 @@
     top: 100%;
     left: 0;
 
+    display: flex;
+    flex-direction: row;
+
     margin-top: base(0.5);
     z-index: $z-modal;
+
+    &__predefined-colors {
+      display: flex;
+      flex-direction: column;
+
+      & * {
+        width: base(1);
+        flex: 1;
+
+        &:focus, &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__button__color {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
 
     & .react-colorful__saturation, .react-colorful__hue {
       border-radius: 0;

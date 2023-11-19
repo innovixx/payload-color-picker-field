@@ -21,6 +21,7 @@ const Color: React.FC<Props> = props => {
     path: pathFromProps,
     required,
     validate = text,
+    colors,
   } = props
 
   const path = pathFromProps || name
@@ -67,6 +68,7 @@ const Color: React.FC<Props> = props => {
       style={style}
       value={value}
       width={width}
+      colors={colors}
     />
   )
 }

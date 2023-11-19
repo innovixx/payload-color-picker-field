@@ -2,17 +2,23 @@ import type { Field, TextField } from 'payload/dist/fields/config/types'
 
 import TextInput from './components/ColorPicker'
 
-export const colorPickerField = (options?: Partial<TextField>): Field => {
+export const colorPickerField = (
+  options?: Partial<TextField> & {
+    colors?: string[]
+  },
+): Field => {
+  const { colors, ...rest } = options || {}
+
   return {
-    ...options,
-    name: options?.name || 'colorPicker',
-    label: options?.label || 'Color Picker',
+    ...rest,
+    name: rest?.name || 'colorPicker',
+    label: rest?.label || 'Color Picker',
     type: 'text',
     admin: {
-      ...options?.admin,
+      ...rest?.admin,
       components: {
-        ...options?.admin?.components,
-        Field: args => TextInput({ ...args }),
+        ...rest?.admin?.components,
+        Field: args => TextInput({ ...args, colors }),
       },
     },
   }
