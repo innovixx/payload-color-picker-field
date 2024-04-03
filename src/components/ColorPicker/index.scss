@@ -14,11 +14,13 @@
 
     display: flex;
   }
+
   &__color-preview {
     height: base(2);
     width: base(2);
     border: 1px solid var(--theme-elevation-150);
   }
+
   &__color-picker-modal {
     position: absolute;
     top: 100%;
@@ -30,6 +32,11 @@
     margin-top: base(0.5);
     z-index: $z-modal;
 
+    visibility: hidden;
+    opacity: 0;
+
+    transition: all 0.1s ease-in-out;
+
     &__predefined-colors {
       display: flex;
       flex-direction: column;
@@ -38,7 +45,8 @@
         width: base(1);
         flex: 1;
 
-        &:focus, &:hover {
+        &:focus,
+        &:hover {
           opacity: 1;
         }
       }
@@ -50,19 +58,26 @@
       height: 100%;
     }
 
-    & .react-colorful__saturation, .react-colorful__hue {
+    & .react-colorful__saturation,
+    .react-colorful__hue {
       border-radius: 0;
     }
-  
+
     & .react-colorful__pointer {
       border-radius: 0;
       width: base(0.95);
       height: base(0.95);
-    }  
+    }
   }
+
   &__color-picker-modal--rtl {
     left: auto;
     right: 0;
+  }
+
+  &__color-picker-modal--focused {
+    visibility: visible;
+    opacity: 1;
   }
 }
 

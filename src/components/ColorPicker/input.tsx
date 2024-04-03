@@ -124,51 +124,51 @@ const ColorInput: React.FC<ColorInputProps> = props => {
             }}
           />
         )}
-        {fieldIsFocused && (
-          <div
-            className={`
-              ${baseClass}__color-picker-modal ${rtl ? `${baseClass}__color-picker-modal--rtl` : ''}
-            `}
-          >
-            {colors && (
-              <div className={`${baseClass}__color-picker-modal__predefined-colors`}>
-                {colors.map((color, index) => (
-                  <Button
-                    buttonStyle="none"
-                    key={index}
-                    className={`${baseClass}__color-picker-modal__button`}
-                    onClick={() => {
-                      onChange?.({
-                        target: {
-                          name: path,
-                          value: color,
-                        },
-                      } as ChangeEvent<HTMLInputElement>)
+        <div
+          className={`
+            ${baseClass}__color-picker-modal 
+            ${rtl ? `${baseClass}__color-picker-modal--rtl` : ''}
+            ${fieldIsFocused ? `${baseClass}__color-picker-modal--focused` : ''}
+          `}
+        >
+          {colors && (
+            <div className={`${baseClass}__color-picker-modal__predefined-colors`}>
+              {colors.map((color, index) => (
+                <Button
+                  buttonStyle="none"
+                  key={index}
+                  className={`${baseClass}__color-picker-modal__button`}
+                  onClick={() => {
+                    onChange?.({
+                      target: {
+                        name: path,
+                        value: color,
+                      },
+                    } as ChangeEvent<HTMLInputElement>)
+                  }}
+                >
+                  <span
+                    className={`${baseClass}__color-picker-modal__button__color`}
+                    style={{
+                      background: color,
                     }}
-                  >
-                    <span
-                      className={`${baseClass}__color-picker-modal__button__color`}
-                      style={{
-                        background: color,
-                      }}
-                    />
-                  </Button>
-                ))}
-              </div>
-            )}
-            <HexColorPicker
-              color={value || ''}
-              onChange={v => {
-                onChange?.({
-                  target: {
-                    name: path,
-                    value: v,
-                  },
-                } as ChangeEvent<HTMLInputElement>)
-              }}
-            />
-          </div>
-        )}
+                  />
+                </Button>
+              ))}
+            </div>
+          )}
+          <HexColorPicker
+            color={value || ''}
+            onChange={v => {
+              onChange?.({
+                target: {
+                  name: path,
+                  value: v,
+                },
+              } as ChangeEvent<HTMLInputElement>)
+            }}
+          />
+        </div>
       </div>
       <FieldDescription
         className={`field-description-${path.replace(/\./g, '__')}`}
