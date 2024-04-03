@@ -126,9 +126,9 @@ const ColorInput: React.FC<ColorInputProps> = props => {
         )}
         {fieldIsFocused && (
           <div
-            className={`${baseClass}__color-picker-modal ${
-              rtl ? `${baseClass}__color-picker-modal--rtl` : ''
-            }`}
+            className={`
+              ${baseClass}__color-picker-modal ${rtl ? `${baseClass}__color-picker-modal--rtl` : ''}
+            `}
           >
             {colors && (
               <div className={`${baseClass}__color-picker-modal__predefined-colors`}>
@@ -157,7 +157,7 @@ const ColorInput: React.FC<ColorInputProps> = props => {
               </div>
             )}
             <HexColorPicker
-              color={value}
+              color={value || ''}
               onChange={v => {
                 onChange?.({
                   target: {
@@ -173,7 +173,7 @@ const ColorInput: React.FC<ColorInputProps> = props => {
       <FieldDescription
         className={`field-description-${path.replace(/\./g, '__')}`}
         description={description}
-        value={value}
+        value={value || ''}
       />
     </div>
   )
