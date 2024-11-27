@@ -1,16 +1,13 @@
 import path from 'path'
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
 const Media: CollectionConfig = {
   slug: 'media',
   access: {
     read: (): boolean => true,
   },
-  admin: {
-    useAsTitle: 'filename',
-  },
   upload: {
-    staticDir: path.resolve(__dirname, '../../uploads'),
+    staticDir: path.join(process.cwd(), 'storage', 'media'),
   },
   fields: [
     {
