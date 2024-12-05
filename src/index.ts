@@ -1,25 +1,32 @@
-import type { Field, TextField } from 'payload/dist/fields/config/types'
+import type { Field, TextField } from "payload"
 
-import TextInput from './components/ColorPicker'
 
 export const colorPickerField = (
-  options?: Partial<TextField> & {
+  options?: {
     colors?: string[]
-  },
+  } & Partial<TextField>,
 ): Field => {
   const { colors, ...rest } = options || {}
 
   return {
     ...rest,
     name: rest?.name || 'colorPicker',
-    label: rest?.label || 'Color Picker',
     type: 'text',
     admin: {
       ...rest?.admin,
       components: {
         ...rest?.admin?.components,
-        Field: args => TextInput({ ...args, colors }),
+        Field: {
+          clientProps: {
+            colors
+          },
+          exportName: 'ColorPickerField',
+          path: '@innovixx/payload-color-picker-field',
+        },
       },
     },
-  }
+    label: rest?.label || 'Color Picker',
+  } as TextField
 }
+
+export * from './components'

@@ -1,76 +1,97 @@
-import React, { useCallback } from 'react'
-import { isFieldRTL } from 'payload/dist/admin/components/forms/field-types/shared'
-import useField from 'payload/dist/admin/components/forms/useField'
-import withCondition from 'payload/dist/admin/components/forms/withCondition'
-import { useConfig } from 'payload/dist/admin/components/utilities/Config'
-import { useLocale } from 'payload/dist/admin/components/utilities/Locale'
-import { text } from 'payload/dist/fields/validations'
+'use client'
 
-import ColorInput from './input'
-import type { Props } from './types'
+import { useConfig, useField, useLocale, withCondition } from '@payloadcms/ui'
+import React, { useCallback, useMemo } from 'react'
 
-const Color: React.FC<Props> = props => {
+import type { ColorPickerFieldClientComponent } from './types.js'
+
+import './index.scss'
+import { isFieldRTL } from '../../utils/isFIeldRTL.js'
+import { mergeFieldStyles } from '../../utils/mergeFieldStyles.js'
+
+// eslint-disable-next-line payload/no-jsx-import-statements
+import { ColorPickerInput } from './Input.jsx'
+
+const ColorPickerFieldComponent: ColorPickerFieldClientComponent = (props) => {
   const {
-    name,
-    admin: { className, condition, description, placeholder, readOnly, rtl, style, width } = {},
-    inputRef,
-    label,
-    localized,
-    maxLength,
-    minLength,
-    path: pathFromProps,
-    required,
-    validate = text,
     colors,
+    field,
+    field: {
+      admin: { className, description, placeholder, rtl } = {},
+      label,
+      localized,
+      maxLength,
+      minLength,
+      required,
+    },
+    inputRef,
+    path,
+    readOnly,
+    validate,
   } = props
 
-  const path = pathFromProps || name
   const locale = useLocale()
 
-  const { localization } = useConfig()
-  const isRTL = isFieldRTL({
-    fieldLocalized: localized as boolean,
-    fieldRTL: rtl as boolean,
-    locale,
-    localizationConfig: localization || undefined,
-  })
+  const {
+    config: {
+      localization
+    }
+  } = useConfig()
 
   const memoizedValidate = useCallback(
-    (value: unknown, options: any) => {
-      return validate(value, { ...options, maxLength, minLength, required })
+    (value, options) => {
+      if (typeof validate === 'function') {
+        return validate(value, { ...options, maxLength, minLength, required })
+      }
     },
     [validate, minLength, maxLength, required],
   )
 
-  const { errorMessage, setValue, showError, value } = useField<string>({
-    condition,
+  const {
+    customComponents: { AfterInput, BeforeInput, Description, Error, Label } = {},
+    setValue,
+    showError,
+    value,
+  } = useField({
     path,
     validate: memoizedValidate,
   })
 
+  const renderRTL = isFieldRTL({
+    fieldLocalized: localized,
+    fieldRTL: rtl,
+    locale,
+    localizationConfig: localization || undefined,
+  })
+
+  const styles = useMemo(() => mergeFieldStyles(field), [field])
+
   return (
-    <ColorInput
+    <ColorPickerInput
+      AfterInput={AfterInput}
+      BeforeInput={BeforeInput}
       className={className}
+      colors={colors}
+      Description={Description}
       description={description}
-      errorMessage={errorMessage}
+      Error={Error}
       inputRef={inputRef}
+      Label={Label}
       label={label}
-      name={name}
-      onChange={e => {
+      localized={localized}
+      onChange={(e) => {
         setValue(e.target.value)
       }}
       path={path}
       placeholder={placeholder}
       readOnly={readOnly}
       required={required}
-      rtl={isRTL}
+      rtl={renderRTL}
       showError={showError}
-      style={style}
-      value={value}
-      width={width}
-      colors={colors}
+      style={styles}
+      value={(value as string) || ''}
     />
   )
 }
 
-export default withCondition(Color)
+export const ColorPickerField = withCondition(ColorPickerFieldComponent)
