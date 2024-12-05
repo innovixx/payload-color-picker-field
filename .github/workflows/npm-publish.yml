@@ -24,7 +24,7 @@ jobs:
         run: zip -r artifact.zip package.json node_modules dist -q 
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: artifact
           path: ./artifact.zip
@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - uses: actions/download-artifact@v2
+      - uses: actions/download-artifact@v3
         with:
           name: artifact
           path: .
