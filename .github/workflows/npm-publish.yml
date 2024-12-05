@@ -15,13 +15,13 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: yarn install --production
+        run: yarn install
 
       - name: Build
         run: yarn build
 
       - name: Zip artifact
-        run: zip -r artifact.zip package.json node_modules dist -q 
+        run: zip -r artifact.zip package.json dist -q 
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
