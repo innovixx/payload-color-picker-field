@@ -4,15 +4,17 @@ import path from 'path'
 import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 
-import Media from './collections/Media'
-import Pages from './collections/Pages'
-import Posts from './collections/Posts'
-import Users from './collections/Users'
+import { Media } from './collections/Media'
+import { Pages } from './collections/Pages'
+import { Posts } from './collections/Posts'
+import { Users } from './collections/Users'
 import { seed } from './seed'
+
+
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
-
+// eslint-disable-next-line no-restricted-exports
 export default buildConfig({
   admin: {
     importMap: {

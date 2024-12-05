@@ -1,22 +1,21 @@
-import path from 'path'
 import type { CollectionConfig } from 'payload'
 
-const Media: CollectionConfig = {
+import path from 'path'
+
+export const Media: CollectionConfig = {
   slug: 'media',
   access: {
     read: (): boolean => true,
   },
-  upload: {
-    staticDir: path.join(process.cwd(), 'storage', 'media'),
-  },
   fields: [
     {
       name: 'alt',
-      label: 'Alt Text',
       type: 'text',
+      label: 'Alt Text',
       required: true,
     },
   ],
+  upload: {
+    staticDir: path.join(process.cwd(), 'storage', 'media'),
+  },
 }
-
-export default Media

@@ -1,14 +1,12 @@
-import type { CollectionConfig } from 'payload/types'
+import type { CollectionConfig } from 'payload'
 
-const Posts: CollectionConfig = {
+export const Posts: CollectionConfig = {
   slug: 'posts',
-  versions: true,
   fields: [
     {
       type: 'tabs',
       tabs: [
         {
-          label: 'Content',
           fields: [
             {
               name: 'title',
@@ -20,19 +18,19 @@ const Posts: CollectionConfig = {
               type: 'text',
             },
           ],
+          label: 'Content',
         },
       ],
     },
     {
       name: 'slug',
-      label: 'Slug',
       type: 'text',
-      required: true,
       admin: {
         position: 'sidebar',
       },
+      label: 'Slug',
+      required: true,
     },
   ],
+  versions: true,
 }
-
-export default Posts

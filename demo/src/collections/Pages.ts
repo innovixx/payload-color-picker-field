@@ -1,9 +1,8 @@
-// eslint-disable-next-line import/no-relative-packages
 import type { CollectionConfig } from 'payload'
 
-// import { colorPickerField } from '../../../dist'
+import { colorPickerField } from '@innovixx/payload-color-picker-field'
 
-const Pages: CollectionConfig = {
+export const Pages: CollectionConfig = {
   slug: 'pages',
   fields: [
     {
@@ -11,27 +10,22 @@ const Pages: CollectionConfig = {
       type: 'text',
       required: true,
     },
-
     {
       name: 'slug',
       type: 'text',
-      required: true,
-      // NOTE: in order for position: 'sidebar' to work here,
-      // the first field of this config must be of type `tabs`,
-      // and this field must be a sibling of it
-      // See `./Posts` or the `../../README.md` for more info
       admin: {
         position: 'sidebar',
       },
+      required: true,
     },
-    // colorPickerField({
-    //   name: 'primaryColor',
-    //   label: 'Primary Color',
-    //   admin: {
-    //     description: 'Pick a color for this page',
-    //   },
-    //   colors: ['#ff0000', '#00ff00', '#0000ff', '#000000', '#ffffff', '#ff00ff'],
-    // }),
+    colorPickerField({
+      name: 'primaryColor',
+      admin: {
+        description: 'Pick a color for this page',
+      },
+      colors: ['#ff0000', '#00ff00', '#0000ff', '#000000', '#ffffff', '#ff00ff'],
+      label: 'Primary Color',
+    }),
     {
       name: 'excerpt',
       type: 'text',
@@ -40,17 +34,15 @@ const Pages: CollectionConfig = {
       name: 'date',
       type: 'date',
     },
-    // colorPickerField({
-    //   name: 'secondaryColor',
-    //   label: 'Secondary Color',
+    colorPickerField({
+      name: 'secondaryColor',
+      label: 'Secondary Color',
 
-    //   admin: {
-    //     position: 'sidebar',
-    //     description: 'Pick a secondary color for this page',
-    //     rtl: true,
-    //   },
-    // }),
+      admin: {
+        description: 'Pick a secondary color for this page',
+        position: 'sidebar',
+        rtl: true,
+      },
+    }),
   ],
 }
-
-export default Pages
