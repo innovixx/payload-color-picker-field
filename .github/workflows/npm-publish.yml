@@ -27,7 +27,7 @@ jobs:
         run: pnpm prune --prod
 
       - name: Zip artifact
-        run: zip -r artifact.zip package.json dist node_modules -q 
+        run: zip -r artifact.zip package.json dist node_modules README.md LICENSE -q 
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
