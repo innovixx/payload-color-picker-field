@@ -1,6 +1,6 @@
 {
   "name": "@innovixx/payload-color-picker-field",
-  "version": "2.0.0-beta-4",
+  "version": "2.0.0",
   "homepage:": "https://innovixx.co.uk",
   "repository": "git@github.com:Innovixx-Development/payload-color-picker-field.git",
   "description": "The Payload Color Picker that enables an easy color selection field for your Payload projects.",
@@ -26,9 +26,9 @@
   "author": "support@innovixx.co.uk",
   "license": "MIT",
   "peerDependencies": {
-    "next": "15.1.3",
-    "payload": "3.16.0",
-    "react": "19.0.0"
+    "next": "^15.0.0",
+    "payload": "^3.2.2",
+    "react": "^19.0.0"
   },
   "devDependencies": {
     "@payloadcms/eslint-config": "^3.0.0",
