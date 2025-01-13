@@ -1,3 +1,4 @@
+import { colorPickerPlugin } from '@innovixx/payload-color-picker-field'
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import path from 'path'
@@ -9,8 +10,6 @@ import { Pages } from './collections/Pages'
 import { Posts } from './collections/Posts'
 import { Users } from './collections/Users'
 import { seed } from './seed'
-
-
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,8 +34,11 @@ export default buildConfig({
       await seed(payload)
     }
   },
+  plugins: [
+    colorPickerPlugin(),
+  ],
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {
     outputFile: path.resolve(dirname, 'lib/types.ts'),
-  },
+  }
 })

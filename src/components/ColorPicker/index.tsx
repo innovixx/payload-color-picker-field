@@ -12,7 +12,7 @@ import { mergeFieldStyles } from '../../utils/mergeFieldStyles.js'
 // eslint-disable-next-line payload/no-jsx-import-statements
 import { ColorPickerInput } from './Input.jsx'
 
-const ColorPickerFieldComponent: ColorPickerFieldClientComponent = (props) => {
+const ColorPickerField: ColorPickerFieldClientComponent = (props) => {
   const {
     colors,
     field,
@@ -94,4 +94,4 @@ const ColorPickerFieldComponent: ColorPickerFieldClientComponent = (props) => {
   )
 }
 
-export const ColorPickerField = withCondition(ColorPickerFieldComponent)
+export const ColorPickerFieldComponent = withCondition(ColorPickerField)

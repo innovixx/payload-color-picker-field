@@ -4,8 +4,6 @@
   "homepage:": "https://innovixx.co.uk",
   "repository": "git@github.com:Innovixx-Development/payload-color-picker-field.git",
   "description": "The Payload Color Picker that enables an easy color selection field for your Payload projects.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "tsc && pnpm copy:scss",
@@ -35,9 +33,9 @@
   "devDependencies": {
     "@payloadcms/eslint-config": "^3.0.0",
     "@payloadcms/eslint-plugin": "^3.0.0",
-    "@payloadcms/next": "3.2.2",
-    "@payloadcms/translations": "3.2.2",
-    "@payloadcms/ui": "3.2.2",
+    "@payloadcms/next": "^3.16.0",
+    "@payloadcms/translations": "^3.16.0",
+    "@payloadcms/ui": "^3.16.0",
     "@types/node": "^20.14.14",
     "@types/react": "npm:types-react@19.0.0-rc.1",
     "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
@@ -47,7 +45,7 @@
     "cross-env": "^7.0.3",
     "next": "15.0.0",
     "nodemon": "^2.0.6",
-    "payload": "3.2.2",
+    "payload": "^3.16.0",
     "prettier": "^2.7.1",
     "react": "19.0.0-rc-65a56d0e-20241020",
     "react-dom": "19.0.0-rc-65a56d0e-20241020",
@@ -55,12 +53,41 @@
     "ts-node": "^9.1.1",
     "typescript": "5.7.2"
   },
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
   "files": [
-    "dist",
-    "types.js",
-    "types.d.ts"
+    "dist"
   ],
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "types": "./src/index.d.ts",
+      "default": "./src/index.js"
+    },
+    "./components": {
+      "import": "./src/components/index.js",
+      "types": "./src/components/index.d.ts",
+      "default": "./src/components/index.js"
+    }
+  },
+  "publishConfig": {
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+      ".": {
+        "import": "./dist/index.js",
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "./components": {
+        "import": "./dist/components/index.js",
+        "types": "./dist/components/index.d.ts",
+        "default": "./dist/components/index.js"
+      }
+    }
+  },
   "dependencies": {
+    "deepmerge": "^4.3.1",
     "react-colorful": "^5.6.1"
   },
   "pnpm": {

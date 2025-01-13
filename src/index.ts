@@ -1,5 +1,24 @@
-import type { Field, TextField } from "payload"
+import type { Field, Plugin, TextField } from "payload"
 
+import deepmerge from 'deepmerge'
+
+import type { PluginConfig } from './types'
+
+export const colorPickerPlugin = (pluginConfig?: PluginConfig): Plugin => (config) => {
+
+  config.admin = {
+    ...config.admin,
+    dependencies: {
+      ...config.admin?.dependencies,
+      'ColorPickerFieldComponent': {
+        type: 'component',
+        path: '@innovixx/payload-color-picker-field',
+      },
+    }
+  }
+
+  return deepmerge(config, pluginConfig?.overwrites || {})
+}
 
 export const colorPickerField = (
   options?: {
@@ -20,13 +39,10 @@ export const colorPickerField = (
           clientProps: {
             colors
           },
-          exportName: 'ColorPickerField',
-          path: '@innovixx/payload-color-picker-field',
+          path: '@innovixx/payload-color-picker-field/components#ColorPickerFieldComponent',
         },
       },
     },
     label: rest?.label || 'Color Picker',
   } as TextField
 }
-
-export * from './components'

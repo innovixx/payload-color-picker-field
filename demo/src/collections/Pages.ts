@@ -34,15 +34,15 @@ export const Pages: CollectionConfig = {
       name: 'date',
       type: 'date',
     },
-    colorPickerField({
-      name: 'secondaryColor',
-      label: 'Secondary Color',
+    // colorPickerField({
+    //   name: 'secondaryColor',
+    //   label: 'Secondary Color',
 
-      admin: {
-        description: 'Pick a secondary color for this page',
-        position: 'sidebar',
-        rtl: true,
-      },
-    }),
+    //   admin: {
+    //     description: 'Pick a secondary color for this page',
+    //     position: 'sidebar',
+    //     rtl: true,
+    //   },
+    // }),
   ],
 }
