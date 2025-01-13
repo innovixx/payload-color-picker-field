@@ -1,24 +1,4 @@
-import type { Field, Plugin, TextField } from "payload"
-
-import deepmerge from 'deepmerge'
-
-import type { PluginConfig } from './types'
-
-export const colorPickerPlugin = (pluginConfig?: PluginConfig): Plugin => (config) => {
-
-  config.admin = {
-    ...config.admin,
-    dependencies: {
-      ...config.admin?.dependencies,
-      'ColorPickerFieldComponent': {
-        type: 'component',
-        path: '@innovixx/payload-color-picker-field',
-      },
-    }
-  }
-
-  return deepmerge(config, pluginConfig?.overwrites || {})
-}
+import type { Field, TextField } from "payload"
 
 export const colorPickerField = (
   options?: {
