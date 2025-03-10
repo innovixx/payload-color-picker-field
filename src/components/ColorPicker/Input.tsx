@@ -3,7 +3,7 @@ import type { ChangeEvent } from 'react'
 
 import { getTranslation } from '@payloadcms/translations'
 import { Button, fieldBaseClass, FieldDescription, FieldError, FieldLabel, RenderCustomComponent, useTranslation } from '@payloadcms/ui'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { HexColorPicker } from 'react-colorful'
 
 import type { ColorPickerInputProps } from './types.js'
@@ -38,6 +38,7 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
   } = props
 
   const [fieldIsFocused, setFieldIsFocused] = useState(false)
+  const lastValueRef = useRef(value)
 
   const { i18n, t } = useTranslation()
 
@@ -48,7 +49,10 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
 
     evt.target.value = evt.target.value.replace(/[^a-f0-9#]/gi, '').slice(0, 7)
 
-    onChange?.(evt as any)
+    if (lastValueRef.current !== evt.target.value) {
+      lastValueRef.current = evt.target.value
+      onChange?.(evt as any)
+    }
   }
 
   return (
@@ -128,12 +132,14 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
                     className={`${baseClass}__color-picker-modal__button`}
                     key={index}
                     onClick={() => {
-                      onChange?.({
-                        target: {
-                          name: path,
-                          value: color,
-                        },
-                      } as any)
+                      if (color !== value) {
+                        onChange?.({
+                          target: {
+                            name: path,
+                            value: color,
+                          },
+                        } as any)
+                      }
                     }}
                   >
                     <span
@@ -149,12 +155,14 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
             <HexColorPicker
               color={value || ''}
               onChange={v => {
-                onChange?.({
-                  target: {
-                    name: path,
-                    value: v,
-                  },
-                } as any)
+                if (v !== value) {
+                  onChange?.({
+                    target: {
+                      name: path,
+                      value: v,
+                    },
+                  } as any)
+                }
               }}
             />
           </div>

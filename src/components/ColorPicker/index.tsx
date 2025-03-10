@@ -80,7 +80,9 @@ const ColorPickerField: ColorPickerFieldClientComponent = (props) => {
       label={label}
       localized={localized}
       onChange={(e) => {
-        setValue(e.target.value)
+        if (e.target.value !== value) {
+          setValue(e.target.value);
+        }
       }}
       path={path}
       placeholder={placeholder}
