@@ -71,7 +71,6 @@
     }
   },
   "dependencies": {
-    "@innovixx/payload-color-picker-field": "file:innovixx-payload-color-picker-field-2.0.1.tgz",
     "react-colorful": "^5.6.1"
   },
   "pnpm": {
