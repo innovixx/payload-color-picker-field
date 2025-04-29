@@ -1,5 +1,5 @@
-import { ColorPickerFieldComponent as ColorPickerFieldComponent_141a5c25a5212086642306af9b79555f } from '@innovixx/payload-color-picker-field/components'
+import { ColorPickerFieldComponent as ColorPickerFieldComponent_95f860801d0381344387ae1d8e2f4d24 } from '@innovixx/payload-color-picker-field/components'
 
 export const importMap = {
-  "@innovixx/payload-color-picker-field/components#ColorPickerFieldComponent": ColorPickerFieldComponent_141a5c25a5212086642306af9b79555f
+  "@innovixx/payload-color-picker-field/components#ColorPickerFieldComponent": ColorPickerFieldComponent_95f860801d0381344387ae1d8e2f4d24
 }
