@@ -30,7 +30,10 @@
         "./src/payload.config.ts"
       ],
       "@innovixx/payload-color-picker-field": [
-        "../"
+        "../dist"
+      ],
+      "@innovixx/payload-color-picker-field/components": [
+        "../dist/components"
       ],
     },
     "target": "ES2022"
