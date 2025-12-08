@@ -10,6 +10,7 @@ A field for [Payload](https://github.com/payloadcms/payload) that enables an eas
 
   - Add a color picker field to your Payload collections
   - Supports HEX color formats
+  - Supports opacity using HEX opacity
 
 ## Installation
 

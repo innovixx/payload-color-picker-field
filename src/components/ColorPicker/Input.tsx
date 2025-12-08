@@ -4,7 +4,7 @@ import type { ChangeEvent } from 'react'
 import { getTranslation } from '@payloadcms/translations'
 import { Button, fieldBaseClass, FieldDescription, FieldError, FieldLabel, RenderCustomComponent, useTranslation } from '@payloadcms/ui'
 import React, { useState, useRef } from 'react'
-import { HexColorPicker } from 'react-colorful'
+import { HexAlphaColorPicker } from 'react-colorful'
 
 import type { ColorPickerInputProps } from './types.js'
 
@@ -46,8 +46,8 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
     if (!evt.target.value.startsWith('#')) {
       evt.target.value = `#${evt.target.value}`
     }
-
-    evt.target.value = evt.target.value.replace(/[^a-f0-9#]/gi, '').slice(0, 7)
+    // alpha enabled by default - gives 9 characters
+    evt.target.value = evt.target.value.replace(/[^a-f0-9#]/gi, '').slice(0, 9)
 
     if (lastValueRef.current !== evt.target.value) {
       lastValueRef.current = evt.target.value
@@ -152,7 +152,7 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
                 ))}
               </div>
             )}
-            <HexColorPicker
+            <HexAlphaColorPicker
               color={value || ''}
               onChange={v => {
                 if (v !== value) {
