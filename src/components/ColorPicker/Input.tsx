@@ -119,7 +119,7 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
           )}
           <div
             className={`
-            ${baseClass}__color-picker-modal 
+            ${baseClass}__color-picker-modal
             ${rtl ? `${baseClass}__color-picker-modal--rtl` : ''}
             ${fieldIsFocused ? `${baseClass}__color-picker-modal--focused` : ''}
           `}
