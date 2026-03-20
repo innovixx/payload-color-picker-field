@@ -6,18 +6,20 @@
       "ES2022"
     ],
     "outDir": "./dist",
+    "rootDir": "src",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "isolatedModules": true,
     "incremental": true,
     "declaration": true,
     "declarationDir": "./dist",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "target": "ES2022",
+    "allowSyntheticDefaultImports": true,
     "plugins": [
       {
         "name": "next"

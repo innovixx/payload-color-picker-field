@@ -1,1 +1,1 @@
-export * from './ColorPicker';
+export { ColorPickerFieldComponent } from './ColorPicker/index.js';
