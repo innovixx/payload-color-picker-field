@@ -1,15 +1,16 @@
 'use client'
 
+import type { Validate, ValidateOptions } from 'payload'
+
 import { useConfig, useField, useLocale, withCondition } from '@payloadcms/ui'
 import React, { useCallback, useMemo } from 'react'
 
+import './index.scss'
+
 import type { ColorPickerFieldClientComponent } from './types.js'
 
-import './index.scss'
 import { isFieldRTL } from '../../utils/isFIeldRTL.js'
 import { mergeFieldStyles } from '../../utils/mergeFieldStyles.js'
-
-// eslint-disable-next-line payload/no-jsx-import-statements
 import { ColorPickerInput } from './Input.js'
 
 const ColorPickerField: ColorPickerFieldClientComponent = (props) => {
@@ -17,9 +18,9 @@ const ColorPickerField: ColorPickerFieldClientComponent = (props) => {
     colors,
     field,
     field: {
-      admin: { className, description, placeholder, rtl } = {},
+      admin: { className, description, placeholder, rtl = false } = {},
       label,
-      localized,
+      localized = false,
       maxLength,
       minLength,
       required,
@@ -30,32 +31,44 @@ const ColorPickerField: ColorPickerFieldClientComponent = (props) => {
     validate,
   } = props
 
-  const locale = useLocale()
+  const locale = useLocale();
 
-  const {
-    config: {
-      localization
-    }
-  } = useConfig()
+  const { config: { localization } = { localization: undefined } } = useConfig() || {};
 
-  const memoizedValidate = useCallback(
-    (value, options) => {
+  const memoizedValidate: Validate = useCallback(
+    (
+      value: null | string | undefined,
+      options: ValidateOptions<any, any, any, string>
+    ): Promise<string | true> | string | true => {
       if (typeof validate === 'function') {
-        return validate(value, { ...options, maxLength, minLength, required })
+        return validate(value, {
+          ...options,
+          maxLength,
+          minLength,
+          required,
+        })
       }
+      return true
     },
     [validate, minLength, maxLength, required],
   )
+
+  const fieldContext = useField({
+    path,
+    validate: memoizedValidate,
+  });
 
   const {
     customComponents: { AfterInput, BeforeInput, Description, Error, Label } = {},
     setValue,
     showError,
     value,
-  } = useField({
-    path,
-    validate: memoizedValidate,
-  })
+  } = fieldContext ?? {
+    customComponents: {},
+    setValue: () => { },
+    showError: false,
+    value: '',
+  };
 
   const renderRTL = isFieldRTL({
     fieldLocalized: localized,

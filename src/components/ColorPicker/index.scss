@@ -10,39 +10,38 @@
 
 .color {
   &__input-container {
-    position: relative;
     display: flex;
+    position: relative;
   }
 
   &__color-preview {
+    border: 1px solid var(--theme-elevation-150);
     height: base(2);
     width: base(2);
-    border: 1px solid var(--theme-elevation-150);
   }
 
   &__color-picker-modal {
-    position: absolute;
-    top: 100%;
-    left: 0;
-
     display: flex;
     flex-direction: row;
+    left: 0;
 
     margin-top: base(0.5);
-    z-index: $z-modal;
-
-    visibility: hidden;
     opacity: 0;
+    position: absolute;
+    top: 100%;
 
     transition: all 0.1s ease-in-out;
+
+    visibility: hidden;
+    z-index: $z-modal;
 
     &__predefined-colors {
       display: flex;
       flex-direction: column;
 
       & * {
-        width: base(1);
         flex: 1;
+        width: base(1);
 
         &:focus,
         &:hover {
@@ -53,8 +52,8 @@
 
     &__button__color {
       display: block;
-      width: 100%;
       height: 100%;
+      width: 100%;
     }
 
     & .react-colorful__saturation,
@@ -64,8 +63,9 @@
 
     & .react-colorful__pointer {
       border-radius: 0;
-      width: base(0.95);
+      cursor: pointer;
       height: base(0.95);
+      width: base(0.95);
     }
   }
 
@@ -75,8 +75,8 @@
   }
 
   &__color-picker-modal--focused {
-    visibility: visible;
     opacity: 1;
+    visibility: visible;
   }
 }
 

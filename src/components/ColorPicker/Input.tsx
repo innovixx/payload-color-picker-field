@@ -1,9 +1,10 @@
 'use client'
+
 import type { ChangeEvent } from 'react'
 
 import { getTranslation } from '@payloadcms/translations'
 import { Button, fieldBaseClass, FieldDescription, FieldError, FieldLabel, RenderCustomComponent, useTranslation } from '@payloadcms/ui'
-import React, { useState, useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { HexColorPicker } from 'react-colorful'
 
 import type { ColorPickerInputProps } from './types.js'
@@ -40,7 +41,7 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
   const [fieldIsFocused, setFieldIsFocused] = useState(false)
   const lastValueRef = useRef(value)
 
-  const { i18n, t } = useTranslation()
+  const { i18n } = useTranslation()
 
   const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
     if (!evt.target.value.startsWith('#')) {
@@ -51,7 +52,7 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
 
     if (lastValueRef.current !== evt.target.value) {
       lastValueRef.current = evt.target.value
-      onChange?.(evt as any)
+      onChange?.(evt)
     }
   }
 
@@ -71,7 +72,12 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
       <RenderCustomComponent
         CustomComponent={Label}
         Fallback={
-          <FieldLabel label={label} localized={localized} path={path} required={required} />
+          <FieldLabel
+            label={label}
+            localized={localized}
+            path={path}
+            required={required}
+          />
         }
       />
       <div className={`${fieldBaseClass}__wrap`}>
@@ -80,7 +86,7 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
           Fallback={<FieldError path={path} showError={showError} />}
         />
         {BeforeInput}
-        <div
+        <button
           className={`${baseClass}__input-container`}
           onBlur={e => {
             if (!e.currentTarget.contains(e.relatedTarget)) {
@@ -88,6 +94,13 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
             }
           }}
           onFocus={() => setFieldIsFocused(true)}
+          style={{
+            border: 0,
+            borderRadius: 3,
+            padding: 0,
+            width: '100%'
+          }}
+          type="button"
         >
           {!rtl && (
             <div
@@ -138,7 +151,7 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
                             name: path,
                             value: color,
                           },
-                        } as any)
+                        } as ChangeEvent<HTMLInputElement>)
                       }
                     }}
                   >
@@ -161,12 +174,12 @@ export const ColorPickerInput: React.FC<ColorPickerInputProps> = (props) => {
                       name: path,
                       value: v,
                     },
-                  } as any)
+                  } as ChangeEvent<HTMLInputElement>)
                 }
               }}
             />
           </div>
-        </div>
+        </button>
         {AfterInput}
         <RenderCustomComponent
           CustomComponent={Description}
